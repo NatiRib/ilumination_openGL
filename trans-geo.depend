@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1522452860 source:c:\users\natri\documents\maua - 5 ano\cg\trans-geo\cubo-unitario.c
+	<gl/gl.h>
+	<math.h>
+
+1522452770 source:c:\users\natri\documents\maua - 5 ano\cg\trans-geo\main.c
+	<windows.h>
+	<gl/gl.h>
+	"cubo-unitario.h"
+	<GL/glu.h>
+
+1522452770 c:\users\natri\documents\maua - 5 ano\cg\trans-geo\cubo-unitario.h
+
+1524541664 source:c:\users\natri\documents\maua - 5 ano\cg\trabalhos-opengl\trans-geo\main.c
+	<windows.h>
+	<gl/gl.h>
+	"cubo-unitario.h"
+	<GL/glu.h>
+
+1524541664 c:\users\natri\documents\maua - 5 ano\cg\trabalhos-opengl\trans-geo\cubo-unitario.h
+
+1524542371 source:c:\users\natri\documents\maua - 5 ano\cg\trabalhos-opengl\trans-geo\cubo-unitario.c
+	<gl/gl.h>
+	<math.h>
+
