@@ -23,3 +23,15 @@
 	<gl/gl.h>
 	<math.h>
 
+1524543476 source:c:\users\natalia\documents\natalia\maua\cg\ilumination_opengl\cubo-unitario.c
+	<gl/gl.h>
+	<math.h>
+
+1524543476 source:c:\users\natalia\documents\natalia\maua\cg\ilumination_opengl\main.c
+	<windows.h>
+	<gl/gl.h>
+	"cubo-unitario.h"
+	<GL/glu.h>
+
+1524543476 c:\users\natalia\documents\natalia\maua\cg\ilumination_opengl\cubo-unitario.h
+

@@ -90,6 +90,7 @@ void linhas_suporte()
     glEnd();
 }
 
+//base da figura
 void plano()
 {
     glBegin(GL_QUADS);
