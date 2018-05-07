@@ -1,6 +1,9 @@
-void cubo();
+void face_cubo(float xmin, float xmax, float ymin, float ymax, float valor_x);
+void cubo_unitario();
 void anel();
-void linhas_suporte();
 void plano();
-void face_cubo();
+void linhas_suporte();
+
+
+
 

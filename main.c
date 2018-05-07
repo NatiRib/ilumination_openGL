@@ -99,10 +99,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
             glRotatef(rot_up,0.0f,1.0f,0.0f);
             glRotatef(rot_down,0.0f,1.0f,0.0f);
 
-            //linhas_suporte();
-            //anel();
-            //plano();
-            face_cubo();
+            plano();
+            //face_cubo(-5, 5, -5, 5, 0);
+            //cubo_unitario();
+            anel();
             SwapBuffers(hDC);
             Sleep (1);
         }

@@ -1,52 +1,66 @@
 #include <gl/gl.h>
 #include <math.h>
-void cubo()
+
+void face_cubo(float xmin, float xmax, float ymin, float ymax, float valor_x)
 {
-    glBegin(GL_QUADS);
+    float x, y, dx, dy;
+    dx = (xmax-xmin) / 20;
+    dy = (ymax-ymin) / 20;
 
-        //frente
-        glColor3f(1,0,0);
-        glVertex3f(0.5,0.5,0.5);
-        glVertex3f(0.5,-0.5,0.5);
-        glVertex3f(0.5,-0.5,-0.5);
-        glVertex3f(0.5,0.5,-0.5);
+    x = xmin;
 
-        //direita
-        glColor3f(0,1,0);
-        glVertex3f(0.5,0.5,0.5);
-        glVertex3f(0.5,0.5,-0.5);
-        glVertex3f(-0.5,0.5,-0.5);
-        glVertex3f(-0.5,0.5,0.5);
+    while(x < xmax)
+    {
+        y = ymin;
+        while (y < ymax)
+        {
+            glBegin(GL_QUADS);
+                glNormal3f(1,0,0);
+                glVertex3f(valor_x,x,y);
+                glVertex3f(valor_x,x+dx,y);
+                glVertex3f(valor_x,x+dx,y+dy);
+                glVertex3f(valor_x,x,y+dy);
+            glEnd();
+            y = y + dy;
+        }
+        x = x + dx;
+    }
+}
 
-        //tras
-        glColor3f(0,1,1);
-        glVertex3f(-0.5,0.5,0.5);
-        glVertex3f(-0.5,0.5,-0.5);
-        glVertex3f(-0.5,-0.5,-0.5);
-        glVertex3f(-0.5,-0.5,0.5);
+void cubo_unitario()
+{
+    glColor3f(1,0,0); //vermelho //frente
+    face_cubo(-0.5, 0.5, -0.5, 0.5, 0.5);
 
-        //esquerda
-        glColor3f(1,0,1);
-        glVertex3f(0.5,-0.5,0.5);
-        glVertex3f(-0.5,-0.5,0.5);
-        glVertex3f(-0.5,-0.5,-0.5);
-        glVertex3f(0.5,-0.5,-0.5);
+    glPushMatrix();
+    glColor3f(0,1,0); //verde //direita
+    glRotated(90,0,0,1);
+    face_cubo(-0.5, 0.5, -0.5, 0.5, 0.5);
+    glPopMatrix();
 
-        //cima
-        glColor3f(1,0.5,1);
-        glVertex3f(-0.5,0.5,0.5);
-        glVertex3f(-0.5,-0.5,0.5);
-        glVertex3f(0.5,-0.5,0.5);
-        glVertex3f(0.5,0.5,0.5);
+    glPushMatrix();
+    glColor3f(0,0,1); // azul //esquerda
+    glRotated(-90,0,0,1);
+    face_cubo(-0.5, 0.5, -0.5, 0.5, 0.5);
+    glPopMatrix();
 
-        //baixo
-        glColor3f(1,1,0.5);
-        glVertex3f(-0.5,0.5,-0.5);
-        glVertex3f(-0.5,-0.5,-0.5);
-        glVertex3f(0.5,-0.5,-0.5);
-        glVertex3f(0.5,0.5,-0.5);
+    glPushMatrix();
+    glColor3f(0,0,0);//preto //tras
+    glRotated(-180,0,0,1);
+    face_cubo(-0.5, 0.5, -0.5, 0.5, 0.5);
+    glPopMatrix();
 
-    glEnd();
+    glPushMatrix();
+    glColor3f(0.5,0.5,0.5); //cinza //cima
+    glRotated(-90,0,1,0);
+    face_cubo(-0.5, 0.5, -0.5, 0.5, 0.5);
+    glPopMatrix();
+
+    glPushMatrix();
+    glColor3f(1,0,1); //rosa //baixo
+    glRotated(90,0,1,0);
+    face_cubo(-0.5, 0.5, -0.5, 0.5, 0.5);
+    glPopMatrix();
 }
 
 void anel()
@@ -59,16 +73,25 @@ void anel()
         glRotatef(i * 12, 0, 0, 1);
         glTranslatef(0, 16.5, 0);
         glScalef(2.0, 1.0, 4.0);
-        cubo();
+        cubo_unitario();
         glPopMatrix();
 
         glPushMatrix();
         glRotatef(i * 12, 0, 0, 1);
         glTranslatef(1.5, 16.5, 2.0);
         glScalef(3.2, 1.0, 1.0);
-        cubo();
+        cubo_unitario();
         glPopMatrix();
     }
+}
+
+void plano()
+{
+    glPushMatrix();
+    glColor3f(0.5,0,0);
+    glRotated(90,0,1,0);
+    face_cubo(-20, 20, -20, 20, 2);
+    glPopMatrix();
 }
 
 void linhas_suporte()
@@ -90,46 +113,14 @@ void linhas_suporte()
     glEnd();
 }
 
-//base da figura
-void plano()
-{
-    glBlendFunc ( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
-    glEnable(GL_BLEND);
 
-    glBegin(GL_QUADS);
-        glColor4f(0,0,0,0.2);
-        glVertex3f(-40,40,-2);
-        glVertex3f(-40,-40,-2);
-        glVertex3f(40,-40,-2);
-        glVertex3f(40,40,-2);
-    glEnd();
-}
 
-void face_cubo()
-{
-    for(int i=-0.5; i>=0.5; i=i+0.1)
-    {
-        for(int j=-0.5; j>=0.5; j=j+0.1)
-        {
-            glBegin(GL_LINE_LOOP);
-                glColor3f(1,0,0);
-                glVertex3f(0.5,i,j);
-                glVertex3f(0.5,i,j);
-                glVertex3f(0.5,i,j);
-                glVertex3f(0.5,i,j);
-            glEnd();
 
-        }
-    }
 
-//    glBegin(GL_QUADS);
-//        glColor3f(1,0,0);
-//        glVertex3f(0.5,0.5,0.5);
-//        glVertex3f(0.5,-0.5,0.5);
-//        glVertex3f(0.5,-0.5,-0.5);
-//        glVertex3f(0.5,0.5,-0.5);
-//    glEnd();
-}
+
+
+
+
 
 
 
