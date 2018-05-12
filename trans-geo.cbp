@@ -40,6 +40,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="cubo-unitario.h" />
+		<Unit filename="ilumination.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="ilumination.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>

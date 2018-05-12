@@ -35,3 +35,19 @@
 
 1525736186 c:\users\natalia\documents\natalia\maua\cg\ilumination_opengl\cubo-unitario.h
 
+1526166022 source:c:\users\natri\documents\maua - 5 ano\cg\trabalhos-opengl\iluminacao-git\ilumination_opengl\cubo-unitario.c
+	<gl/gl.h>
+	<math.h>
+
+1526167118 source:c:\users\natri\documents\maua - 5 ano\cg\trabalhos-opengl\iluminacao-git\ilumination_opengl\ilumination.c
+	<gl/gl.h>
+	<math.h>
+
+1526165580 source:c:\users\natri\documents\maua - 5 ano\cg\trabalhos-opengl\iluminacao-git\ilumination_opengl\main.c
+	<windows.h>
+	<gl/gl.h>
+	"cubo-unitario.h"
+	<GL/glu.h>
+
+1525823316 c:\users\natri\documents\maua - 5 ano\cg\trabalhos-opengl\iluminacao-git\ilumination_opengl\cubo-unitario.h
+

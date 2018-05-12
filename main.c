@@ -6,10 +6,9 @@
 LRESULT CALLBACK WindowProc(HWND, UINT, WPARAM, LPARAM);
 void EnableOpenGL(HWND hwnd, HDC*, HGLRC*);
 void DisableOpenGL(HWND, HDC, HGLRC);
-float rot_left = 0;
-float rot_right = 0;
-float rot_up = 0;
-float rot_down = 0;
+
+//float p[4] = {0.0, 0.0, 20.0, 1.0}; //para fonte pontual
+float p[4] = {0.0, 0.0, 40.0, 1.0}; //para fonte refletora
 
 int WINAPI WinMain(HINSTANCE hInstance,
                    HINSTANCE hPrevInstance,
@@ -82,7 +81,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
         {
             /* OpenGL animation code goes here */
 
-            glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+            glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             glEnable(GL_DEPTH_TEST);
 
@@ -93,16 +92,24 @@ int WINAPI WinMain(HINSTANCE hInstance,
             glMatrixMode(GL_MODELVIEW);
             glLoadIdentity();
 
-            //rotaciona o desenho (setas controlam a direcao)
-            glRotatef(rot_left,1.0f,0.0f,0.0f);
-            glRotatef(rot_right,1.0f,0.0f,0.0f);
-            glRotatef(rot_up,0.0f,1.0f,0.0f);
-            glRotatef(rot_down,0.0f,1.0f,0.0f);
+
+            //---------- Iluminacao - Inicio --------------
+            glEnable(GL_NORMALIZE);
+
+            //Configura_Fonte_Pontual(p);
+            Configura_Fonte_Refletora(p);
+            Configura_Material();
+            glColor3f(0.8, 0.5, 0.2);
 
             plano();
-            //face_cubo(-5, 5, -5, 5, 0);
-            //cubo_unitario();
             anel();
+
+            //setas do teclado movimentam as fontes de luz
+            //Desenha_Fonte_Pontual(p);
+            Desenha_Fonte_Refletora(p);
+
+            //---------- Iluminacao - Fim -----------------
+
             SwapBuffers(hDC);
             Sleep (1);
         }
@@ -143,23 +150,23 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
             return DefWindowProc(hwnd, uMsg, wParam, lParam);
     }
 
-    //rotacionar o desenho
+    //----- setas do teclado -------
     switch (wParam)
     {
         case VK_ESCAPE:
             PostQuitMessage(0);
         break;
         case VK_LEFT:
-            rot_left+=1.5f;
+            p[0]+=1.5f;
         break;
         case VK_RIGHT:
-            rot_right-=1.5f;
+            p[0]-=1.5f;
         break;
         case VK_UP:
-            rot_up+=1.5f;
+            p[2]+=1.5f;
         break;
         case VK_DOWN:
-            rot_down-=1.5f;
+            p[2]-=1.5f;
         break;
     }
 
